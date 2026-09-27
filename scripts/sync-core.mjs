@@ -24,6 +24,7 @@ for (const port of ["articleall-chrome", "articleall-firefox", "articleall-safar
     resolve(coreDir, "enabled-state.js"),
     resolve(destination, "enabled-state.js"),
   );
+  await copyFile(resolve(coreDir, "site-settings.js"), resolve(destination, "site-settings.js"));
   await copyFile(
     resolve(coreDir, "router.test.js"),
     resolve(destination, "router.test.js"),
@@ -37,4 +38,9 @@ for (const port of ["articleall-chrome", "articleall-firefox", "articleall-safar
     resolve(destination, "background.test.js"),
   );
   await writeFile(resolve(destination, "router-data.js"), routerData);
+  const optionsDestination = resolve(root, port, "options");
+  await mkdir(optionsDestination, { recursive: true });
+  await copyFile(resolve(coreDir, "options.html"), resolve(optionsDestination, "options.html"));
+  await copyFile(resolve(coreDir, "options.css"), resolve(optionsDestination, "options.css"));
+  await copyFile(resolve(coreDir, "options.js"), resolve(optionsDestination, "options.js"));
 }
