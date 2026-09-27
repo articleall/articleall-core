@@ -1,0 +1,8 @@
+{
+  "name": "articleall",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "sync": "node scripts/sync-core.mjs"
+  }
+}
