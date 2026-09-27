@@ -38,6 +38,10 @@ for (const port of ["articleall-chrome", "articleall-firefox", "articleall-safar
     resolve(coreDir, "background.test.js"),
     resolve(destination, "background.test.js"),
   );
+  await copyFile(
+    resolve(coreDir, "site-settings.test.js"),
+    resolve(destination, "site-settings.test.js"),
+  );
   await writeFile(resolve(destination, "router-data.js"), routerData);
   const popupDestination = resolve(root, port, "popup");
   await mkdir(popupDestination, { recursive: true });
