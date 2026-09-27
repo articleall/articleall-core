@@ -13,13 +13,7 @@ export default [
     ignores: ["**/node_modules/**"],
   },
   {
-    files: [
-      "core/**/*.js",
-      "scripts/**/*.mjs",
-      "articleall-chrome/src/**/*.js",
-      "articleall-firefox/src/**/*.js",
-      "articleall-safari/src/**/*.js",
-    ],
+    files: ["core/**/*.js", "scripts/**/*.mjs"],
     ...js.configs.recommended,
     languageOptions: {
       ecmaVersion: "latest",

@@ -7,12 +7,21 @@ avoids duplicate redirects, and lets users pause all redirects or disable
 individual sites. It runs locally, has no analytics, and does not transmit
 browsing data.
 
-The repository contains one shared vanilla JavaScript core and three ports:
+This repository (`articleall-core/`) is the shared monorepo. Browser ports
+live as sibling directories in the workspace:
 
-- `articleall-chrome/` — Chrome Manifest V3 extension
-- `articleall-firefox/` — Firefox Manifest V3 extension
-- `articleall-safari/` — Safari Web Extension source for Xcode
+```text
+Articleall/
+├── articleall-core/      ← this repo (core, scripts, docs, CI)
+├── articleall-chrome/    ← Chrome Manifest V3 extension
+├── articleall-firefox/   ← Firefox Manifest V3 extension
+└── articleall-safari/    ← Safari Web Extension source for Xcode
+```
+
+Inside `articleall-core/`:
+
 - `core/` — shared rules, router, storage helpers, options UI, and tests
+- `scripts/` — sync script that copies core files into each port
 
 ## Architecture
 
@@ -48,6 +57,7 @@ behavior and tests stay consistent.
 Install dependencies once, then run the complete synchronized test suite:
 
 ```sh
+cd articleall-core
 npm install
 npm run test:all
 ```
@@ -58,10 +68,10 @@ To synchronize the shared core without running tests:
 npm run sync
 ```
 
-The individual port tests can also be run with `npm test` from
-`articleall-chrome/`, `articleall-firefox/`, or `articleall-safari/`. Run
-`npm run lint` for ESLint checks. No production build step is required for
-Chrome or Firefox.
+The individual port tests can also be run with `npm test` from the sibling
+`../articleall-chrome/`, `../articleall-firefox/`, or `../articleall-safari/`
+directories. Run `npm run lint` from `articleall-core/`. No production build
+step is required for Chrome or Firefox.
 
 ## Install
 
@@ -70,13 +80,13 @@ Chrome or Firefox.
 1. Open `chrome://extensions`.
 2. Enable **Developer mode**.
 3. Click **Load unpacked**.
-4. Select `articleall-chrome/`.
+4. Select the sibling `articleall-chrome/` directory.
 
 ### Firefox
 
 1. Open `about:debugging#/runtime/this-firefox`.
 2. Click **Load Temporary Add-on**.
-3. Select `articleall-firefox/manifest.json`.
+3. Select `articleall-firefox/manifest.json` from the sibling directory.
 
 For a persistent Firefox installation, package and sign the add-on through the
 Firefox Add-ons Developer Hub.
@@ -94,7 +104,7 @@ the final packaging and signing.
 
 ## Supported sites
 
-The shared rules support 28 domains, including Kompas, Suara, Tribunnews,
+The shared rules support 31 domains, including Kompas, Suara, Tribunnews,
 Grid.id, Viva, Detik, Merdeka, Liputan6, Tempo, CNN Indonesia, Okezone,
 Sindonews, Poskota, Beritasatu, iNews, and Wahana News. The complete
 verification matrix and example URLs are in [`core/SITES.md`](core/SITES.md).

@@ -2,8 +2,9 @@ import { mkdir, readFile, writeFile, copyFile } from "node:fs/promises";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
-const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
-const coreDir = resolve(root, "core");
+const monorepoRoot = resolve(dirname(fileURLToPath(import.meta.url)), "..");
+const workspaceRoot = resolve(monorepoRoot, "..");
+const coreDir = resolve(monorepoRoot, "core");
 const routerData = `export const RULES = ${await readFile(
   resolve(coreDir, "rules.json"),
   "utf8",
@@ -12,7 +13,7 @@ const routerData = `export const RULES = ${await readFile(
 await writeFile(resolve(coreDir, "router-data.js"), routerData);
 
 for (const port of ["articleall-chrome", "articleall-firefox", "articleall-safari"]) {
-  const destination = resolve(root, port, "src");
+  const destination = resolve(workspaceRoot, port, "src");
   await mkdir(destination, { recursive: true });
   await copyFile(resolve(coreDir, "router.js"), resolve(destination, "router.js"));
   await copyFile(
@@ -43,10 +44,10 @@ for (const port of ["articleall-chrome", "articleall-firefox", "articleall-safar
     resolve(destination, "site-settings.test.js"),
   );
   await writeFile(resolve(destination, "router-data.js"), routerData);
-  const popupDestination = resolve(root, port, "popup");
+  const popupDestination = resolve(workspaceRoot, port, "popup");
   await mkdir(popupDestination, { recursive: true });
   await copyFile(resolve(coreDir, "storage.js"), resolve(popupDestination, "storage.js"));
-  const optionsDestination = resolve(root, port, "options");
+  const optionsDestination = resolve(workspaceRoot, port, "options");
   await mkdir(optionsDestination, { recursive: true });
   await copyFile(resolve(coreDir, "options.html"), resolve(optionsDestination, "options.html"));
   await copyFile(resolve(coreDir, "options.css"), resolve(optionsDestination, "options.css"));
