@@ -3,6 +3,13 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "sync": "node scripts/sync-core.mjs"
+    "sync": "node scripts/sync-core.mjs",
+    "test": "npm --prefix core test",
+    "test:all": "npm run sync && npm test && npm --prefix articleall-chrome test && npm --prefix articleall-firefox test && npm --prefix articleall-safari test",
+    "lint": "eslint core scripts articleall-chrome/src articleall-firefox/src articleall-safari/src"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.12.0",
+    "eslint": "^9.12.0"
   }
 }
