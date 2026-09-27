@@ -19,6 +19,11 @@ for (const port of ["articleall-chrome", "articleall-firefox", "articleall-safar
     resolve(coreDir, "redirect-guard.js"),
     resolve(destination, "redirect-guard.js"),
   );
+  await copyFile(resolve(coreDir, "storage.js"), resolve(destination, "storage.js"));
+  await copyFile(
+    resolve(coreDir, "enabled-state.js"),
+    resolve(destination, "enabled-state.js"),
+  );
   await copyFile(
     resolve(coreDir, "router.test.js"),
     resolve(destination, "router.test.js"),
@@ -26,6 +31,10 @@ for (const port of ["articleall-chrome", "articleall-firefox", "articleall-safar
   await copyFile(
     resolve(coreDir, "redirect-guard.test.js"),
     resolve(destination, "redirect-guard.test.js"),
+  );
+  await copyFile(
+    resolve(coreDir, "background.test.js"),
+    resolve(destination, "background.test.js"),
   );
   await writeFile(resolve(destination, "router-data.js"), routerData);
 }

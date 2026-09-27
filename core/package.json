@@ -3,6 +3,6 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "test": "node --test router.test.js redirect-guard.test.js"
+    "test": "node --test router.test.js redirect-guard.test.js background.test.js"
   }
 }
