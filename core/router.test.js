@@ -71,6 +71,21 @@ test("uses site-specific query keys", () => {
   );
 });
 
+test("supports the additional Indonesian news sites", () => {
+  assert.equal(
+    rewriteUrl("https://www.antaranews.com/berita/123/contoh?page=1"),
+    "https://www.antaranews.com/berita/123/contoh?page=all",
+  );
+  assert.equal(
+    rewriteUrl("https://news.republika.co.id/berita/abc123/contoh"),
+    "https://news.republika.co.id/berita/abc123/contoh?page=all",
+  );
+  assert.equal(
+    rewriteUrl("https://finansial.bisnis.com/read/20260926/215/2007491/contoh?page=2"),
+    "https://finansial.bisnis.com/read/20260926/215/2007491/contoh?page=all",
+  );
+});
+
 test("adds a slash before query for slash-query sites", () => {
   assert.equal(
     rewriteUrl("https://www.jawapos.com/read/1?utm=1"),

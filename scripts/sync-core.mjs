@@ -24,6 +24,7 @@ for (const port of ["articleall-chrome", "articleall-firefox", "articleall-safar
     resolve(coreDir, "enabled-state.js"),
     resolve(destination, "enabled-state.js"),
   );
+  await copyFile(resolve(coreDir, "i18n.js"), resolve(destination, "i18n.js"));
   await copyFile(resolve(coreDir, "site-settings.js"), resolve(destination, "site-settings.js"));
   await copyFile(
     resolve(coreDir, "router.test.js"),

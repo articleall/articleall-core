@@ -26,7 +26,7 @@ test("site settings expose all rule domains enabled by default", async () => {
   globalThis.chrome = mockChrome();
   const settings = await import(`./site-settings.js?test=${Date.now()}-1`);
   const sites = await settings.getAllSites();
-  assert.equal(sites.length, 28);
+  assert.equal(sites.length, 31);
   assert.equal(sites.find((site) => site.domain === "kompas.com").enabled, true);
 });
 
