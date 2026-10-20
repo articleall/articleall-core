@@ -39,3 +39,14 @@ test("site overrides persist and invalidate cached values", async () => {
   chrome.notify({ siteOverrides: { newValue: { "kompas.com": true } } });
   assert.equal(await settings.isSiteEnabled("kompas.com"), true);
 });
+
+test("disabling a site also disables its subdomains", async () => {
+  globalThis.chrome = mockChrome();
+  const settings = await import(`./site-settings.js?test=${Date.now()}-3`);
+  await settings.setSiteEnabled("kompas.com", false);
+  assert.equal(await settings.isSiteEnabled("www.kompas.com"), false);
+  assert.equal(await settings.isSiteEnabled("news.kompas.com"), false);
+  assert.equal(await settings.isSiteEnabled("WWW.Kompas.com"), false);
+  assert.equal(await settings.isSiteEnabled("www.kompasiana.com"), true);
+  assert.equal(await settings.isSiteEnabled("notkompas.com"), true);
+});

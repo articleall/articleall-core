@@ -41,9 +41,14 @@ export async function getAllSites() {
   }));
 }
 
-export async function isSiteEnabled(domain) {
+function ruleDomainFor(hostname) {
+  const host = hostname.toLowerCase();
+  return domains().find((domain) => host === domain || host.endsWith(`.${domain}`)) ?? host;
+}
+
+export async function isSiteEnabled(hostname) {
   const overrides = await getOverrides();
-  return overrides[domain.toLowerCase()] !== false;
+  return overrides[ruleDomainFor(hostname)] !== false;
 }
 
 export async function setSiteEnabled(domain, enabled) {
