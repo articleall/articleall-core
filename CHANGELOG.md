@@ -4,6 +4,19 @@ All notable changes to Articleall are documented here. This project follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and uses
 [Semantic Versioning](https://semver.org/).
 
+## [1.2.0] - 2026-10-20
+
+### Added
+
+- Full-page rule for IDX Channel (`/all` suffix on article pages).
+
+### Fixed
+
+- Firefox port now declares a module background script; Firefox does not
+  support background service workers. Minimum Firefox version is now 112.
+- Disabling a site now also disables its subdomains, such as
+  `www.kompas.com` and `news.kompas.com`.
+
 ## [1.0.0] - 2026-09-27
 
 ### Added
