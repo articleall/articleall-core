@@ -104,7 +104,7 @@ the final packaging and signing.
 
 ## Supported sites
 
-The shared rules support 31 domains, including Kompas, Suara, Tribunnews,
+The shared rules support 32 domains, including Kompas, Suara, Tribunnews,
 Grid.id, Viva, Detik, Merdeka, Liputan6, Tempo, CNN Indonesia, Okezone,
 Sindonews, Poskota, Beritasatu, iNews, and Wahana News. The complete
 verification matrix and example URLs are in [`core/SITES.md`](core/SITES.md).

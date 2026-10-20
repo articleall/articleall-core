@@ -38,6 +38,7 @@ the target full-page value.
 | beritasatu.com | `/` + `view=all` | `https://beritasatu.com/read/1/?view=2` | `https://beritasatu.com/read/1/?view=all` | pending |
 | inews.id | `/all` suffix | `https://www.inews.id/read/1` | `https://www.inews.id/read/1/all` | pending |
 | wahananews.co | `/0` suffix | `https://wahananews.co/read/1` | `https://wahananews.co/read/1/0` | pending |
+| idxchannel.com | `/all` suffix | `https://www.idxchannel.com/banking/6-perbedaan-bca-tahapan-dan-expresi-jenis-tabungan-kartu-dan-setoran-awal` | `https://www.idxchannel.com/banking/6-perbedaan-bca-tahapan-dan-expresi-jenis-tabungan-kartu-dan-setoran-awal/all` | yes |
 
 The `Verified` column records whether the URL convention has been checked
 against a live article endpoint; pending entries remain useful routing fixtures

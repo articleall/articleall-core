@@ -186,6 +186,13 @@ export const RULES = {
     {
       "domain": "wahananews.co",
       "suffix": "0"
+    },
+    {
+      "domain": "idxchannel.com",
+      "suffix": "all",
+      "pathPatterns": [
+        "^\\/(?!(?:tag|author)\\/)[^\\/]+\\/[^\\/]+\\/?$"
+      ]
     }
   ]
 };

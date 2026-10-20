@@ -110,6 +110,17 @@ test("adds and detects path suffixes without duplicate slashes", () => {
   assert.equal(rewriteUrl("https://wahananews.co/read/1/0"), null);
 });
 
+test("adds /all to idxchannel articles only", () => {
+  const article =
+    "https://www.idxchannel.com/banking/6-perbedaan-bca-tahapan-dan-expresi-jenis-tabungan-kartu-dan-setoran-awal";
+  assert.equal(rewriteUrl(article), `${article}/all`);
+  assert.equal(rewriteUrl(`${article}/all`), null);
+  assert.equal(rewriteUrl(`${article}/2`), null);
+  assert.equal(rewriteUrl("https://www.idxchannel.com/banking"), null);
+  assert.equal(rewriteUrl("https://www.idxchannel.com/tag/BCA"), null);
+  assert.equal(rewriteUrl("https://www.idxchannel.com/author/kurnia-nadya"), null);
+});
+
 test("ignores unsupported, invalid, and non-web URLs", () => {
   assert.equal(rewriteUrl("https://example.com/article"), null);
   assert.equal(rewriteUrl("chrome://extensions"), null);
